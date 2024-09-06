@@ -41,7 +41,8 @@ class JobController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'employer_id' =>['required', 'exists:employers'],
+            'title' => ['required', 'string', 'max:255'],
+            'employer_id' =>['required'],
             'salary' =>['required'],
             'location' =>['required'],
             'schedule' =>['required', Rule::in(['Full Time', 'Part Time'])],
@@ -49,7 +50,7 @@ class JobController extends Controller
             'tags' =>['nullable'],
         ]);
 
-        $attributes['featured']-> $request ->has('featured');
+        $attributes['featured'] = $request ->has('featured');
 
         $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
 
@@ -59,7 +60,7 @@ class JobController extends Controller
             }
         }
 
-        return redirect('/');
+        return redirect('/jobs');
     }
 
     /**

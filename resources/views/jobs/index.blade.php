@@ -8,7 +8,7 @@
             </form> --}}
 
             <x-forms.form action="/search" class="mt-6">
-                <x-forms.input placeholder="Web Developper..." name="q" :label="false"/>
+                <x-forms.input :label="false" placeholder="Web Developper..." name="q" />
             </x-forms.form>
         </section>
 
